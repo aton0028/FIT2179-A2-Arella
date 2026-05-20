@@ -1,0 +1,65 @@
+Year;State;Contacts;Practitioners;ContactsPerWorker
+2015;New South Wales;3096052;16023;193.2
+2016;New South Wales;3518157;16526;212.9
+2017;New South Wales;3217760;16977;189.5
+2018;New South Wales;3052974;17363;175.8
+2019;New South Wales;3169583;18010;176.0
+2020;New South Wales;3165267;19216;164.7
+2021;New South Wales;3402055;19185;177.3
+2022;New South Wales;3170389;19375;163.6
+2015;Victoria;1952927;13746;142.1
+2016;Victoria;1829497;14177;129.0
+2017;Victoria;1579185;14852;106.3
+2018;Victoria;2241480;15609;143.6
+2019;Victoria;2323958;16474;141.1
+2020;Victoria;2447013;17593;139.1
+2021;Victoria;2281677;17839;127.9
+2022;Victoria;2247293;18391;122.2
+2015;Queensland;1733394;9133;189.8
+2016;Queensland;1919330;9584;200.3
+2017;Queensland;1976246;10110;195.5
+2018;Queensland;2064302;10561;195.5
+2019;Queensland;2025116;11115;182.2
+2020;Queensland;2139287;11923;179.4
+2021;Queensland;2241626;12134;184.7
+2022;Queensland;1951644;12444;156.8
+2015;Western Australia;854759;5604;152.5
+2016;Western Australia;874921;5812;150.5
+2017;Western Australia;921395;5975;154.2
+2018;Western Australia;918080;6172;148.7
+2019;Western Australia;966266;6540;147.7
+2020;Western Australia;1000757;6949;144.0
+2021;Western Australia;1021539;6950;147.0
+2022;Western Australia;979477;7325;133.7
+2015;South Australia;664380;3289;202.0
+2016;South Australia;720265;3399;211.9
+2017;South Australia;682162;3447;197.9
+2018;South Australia;685446;3485;196.7
+2019;South Australia;708056;3630;195.1
+2020;South Australia;700137;3863;181.2
+2021;South Australia;679760;3816;178.1
+2022;South Australia;639704;3946;162.1
+2015;Tasmania;140901;1028;137.1
+2016;Tasmania;148269;1015;146.1
+2017;Tasmania;136902;1031;132.8
+2018;Tasmania;147862;1088;135.9
+2019;Tasmania;112748;1142;98.7
+2020;Tasmania;145376;1201;121.0
+2021;Tasmania;161165;1223;131.8
+2022;Tasmania;143432;1269;113.0
+2015;Australian Capital Territory;302842;1037;292.0
+2016;Australian Capital Territory;323099;1060;304.8
+2017;Australian Capital Territory;312819;1147;272.7
+2018;Australian Capital Territory;319198;1194;267.3
+2019;Australian Capital Territory;317659;1258;252.5
+2020;Australian Capital Territory;348703;1380;252.7
+2021;Australian Capital Territory;365656;1366;267.7
+2022;Australian Capital Territory;353648;1452;243.6
+2015;Northern Territory;77192;404;191.1
+2016;Northern Territory;78846;416;189.5
+2017;Northern Territory;79473;415;191.5
+2018;Northern Territory;80034;406;197.1
+2019;Northern Territory;82599;405;203.9
+2020;Northern Territory;89144;412;216.4
+2021;Northern Territory;93934;430;218.5
+2022;Northern Territory;83825;412;203.5
