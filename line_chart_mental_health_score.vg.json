@@ -1,0 +1,68 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 900,
+  "height": 400,
+  "data": {
+    "url": "https://raw.githubusercontent.com/aton0028/datavis2-datasets/refs/heads/main/mental-health-score.csv",
+    "format": { "type": "dsv", "delimiter": ";" }
+  },
+  "transform": [
+    { "filter": "datum['Age group'] !== 'Total'" }
+  ],
+  "layer": [
+    {
+      "mark": { "type": "line", "point": true },
+      "encoding": {
+        "x": {
+          "field": "Year",
+          "type": "ordinal",
+          "title": "Year",
+          "axis": {"labelAngle": 0}
+        },
+        "y": {
+          "field": "Score",
+          "type": "quantitative",
+          "title": "Mental Health Score",
+          "scale": { "zero": true }
+        },
+        "color": {
+          "field": "Age group",
+          "type": "nominal",
+          "title": "Age Group"
+        },
+        "tooltip": [
+          { "field": "Year", "title": "Year" },
+          { "field": "Age group", "title": "Age Group" },
+          { "field": "Score", "title": "Mental Health Score", "format": ".1f" }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "color": "#333",
+        "strokeWidth": 0.5
+      },
+      "encoding": {
+        "x": { "datum": "2020" },
+        "y": { "datum": 65 },
+        "x2": { "datum": "2017" },
+        "y2": { "datum": 60 }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "right",
+        "fontSize": 12,
+        "color": "#333",
+        "lineBreak": "\n"
+      },
+      "encoding": {
+        "x": { "datum": "2017" },
+        "y": { "datum": 60 },
+        "text": { "value": ["COVID-19 pandemic", "linked to sharp decline", "in mental health scores"] }
+      }
+    }
+  ]
+}

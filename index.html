@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Mental Health in Australia</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+  <header class="hero">
+  <h1>Mental Health in Australia</h1>
+  <h2>Who is most affected, and are services keeping up?</h2>
+
+  <p>
+    Mental health is a growing concern in Australia, affecting people across different
+    ages, genders and locations. This visualisation explores how common mental disorders
+    are, which groups are most affected, and whether Australia’s mental health services
+    appear to be keeping up with demand.
+  </p>
+
+  <p>
+    The story begins with the overall scale of mental illness, then focuses on age groups
+    most at risk, before looking at the availability of mental health practitioners and
+    service contacts across Australia.
+  </p>
+</header>
+
+  <main>
+
+    <section>
+      <h2>The Scale of Mental Illness</h2>
+      <p>
+         Before examining specific groups, it is important to understand the overall scale of
+          mental illness in Australia. This section explores how common mental disorders are,
+          which types are most prevalent, and whether prevalence differs between males and females.
+      </p>
+
+      <div class="grid two">
+        <div class="chart-card">
+          <h3>How common is mental illness?</h3>
+          <p>Around one in five Australians experienced a mental disorder within a 12-month period.
+            Each square below represents 1% of the population.</p>
+          <div id="waffle"></div>
+        </div>
+
+        <div class="chart-card">
+          <h3>Are males and females affected differently?</h3>
+          <p>Mental health prevalence is not evenly distributed between genders.
+            This chart compares the prevalence of specific disorders among males and females.</p>
+          <div id="gender"></div>
+        </div>
+      </div>
+
+        <div class="chart-card wide">
+        <h3>What types of disorders are most common?</h3>
+          <p> Mental illness is not a single condition. These charts break mental disorders into
+         major categories and show which specific disorders contribute most to Australia's
+          mental health burden.</p>
+        <div id="donut"></div>
+        <p class="insight">
+            <strong>Key takeaway:</strong> Anxiety disorders account for the largest share of
+              mental disorders, highlighting anxiety as one of Australia's most common mental
+              health challenges.</p>
+      </div>
+    </section>
+
+
+    <section>
+      <h2>Age Groups Most Affected</h2>
+      <p>
+         Age is one of the clearest patterns in Australia's mental health data.
+         This section examines which age groups experience the highest prevalence,
+        how prevalence has changed over time, and whether increasing prevalence is
+        reflected in growing demand for mental health services.
+      </p>
+
+      <div class="grid two">
+        <div class="chart-card">
+          <h3>Which age group has the highest prevalence?</h3>
+          <p>This chart ranks age groups by the proportion experiencing mental disorders.</p>
+          <div id="age-ranking"></div>
+          <p class="insight">
+            <strong>Key takeaway:</strong> Young adults aged 16–24 report the highest prevalence
+            of mental disorders among all age groups.
+          </p>
+        </div>
+
+        <div class="chart-card">
+          <h3>How has prevalence changed?</h3>
+          <p> Has this always been the case? Comparing 2007 and 2022 reveals how mental health
+              prevalence has changed across age groups over time.</p>
+          <div id="dumbbell"></div>
+          <p class="insight">
+           <strong>Key takeaway:</strong> The largest increases occurred among younger age groups,
+            suggesting mental health challenges have become increasingly concentrated among younger Australians.
+          </p>
+        </div>
+      </div>
+
+        <div class="chart-card wide">
+          <h3>Mental health score over time</h3>
+          <p>Prevalence rates tell only part of the story. Mental health scores provide another
+          measure of wellbeing across age groups and over time.</p>
+          <div id="mental-score"></div>
+        </div>
+
+        <div class="chart-card wide">
+          <h3>Service contacts by age group</h3>
+          <p>This chart shows how community mental health contacts changed from 2015 to 2024.</p>
+          <div id="contacts-area"></div>
+          <p class="insight">
+            <strong>Key takeaway:</strong> Younger Australians consistently record lower mental
+              health scores, with noticeable declines during the COVID-19 period.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Are Services Keeping Up?</h2>
+      <p>
+        Rising demand creates pressure on mental health services. The final section examines
+       whether Australia's mental health workforce has expanded quickly enough to support
+      growing service demand.
+      </p>
+      <div class="chart-card wide">
+          <h3>Workforce growth</h3>
+          <p> The first step is to examine whether the workforce itself has grown.
+            This chart compares practitioner numbers in 2015 and 2024.</p>
+          <div id="slope"></div>
+          <p class="insight">
+          <strong>Key takeaway:</strong> All major professions expanded, with psychologists
+            showing the largest workforce growth over the period.
+          </p>
+        </div>
+      </div>
+
+       <div class="chart-card wide">
+  <h3>Where are mental health practitioners located?</h3>
+  <p>
+    Workforce growth does not necessarily mean equal access. This map shows how
+    practitioner availability varies across Australian states and territories.
+  </p>
+
+  <div class="map-container">
+    <div class="map-vis">
+      <div id="map"></div>
+    </div>
+
+    <div class="map-insights">
+      <h4>Key findings</h4>
+
+      <p>
+        Practitioner availability is not evenly distributed across Australia.
+      </p>
+
+      <p>
+        Darker states have more mental health practitioners per 100,000 people,
+        while lighter states have fewer practitioners relative to population size.
+      </p>
+
+      <p>
+        This suggests that access to mental health support may vary depending on
+        where Australians live.
+      </p>
+    </div>
+  </div>
+</div>
+
+        <div class="chart-card wide">
+          <h3>Practitioners vs service contacts</h3>
+          <p>  Ultimately, workforce capacity must be considered alongside demand.
+  This chart compares practitioner numbers with mental health service contacts
+  across Australia.</p>
+          <div id="scatter"></div>
+          <p class="insight">
+  <strong>Key takeaway:</strong> Although states with larger workforces generally
+  record more service contacts, demand continues to grow alongside workforce expansion.
+</p>
+        </div>
+
+  </main>
+
+  <footer>
+    <p>
+      Visualisation by Arella Evelina Tondobala. Data sources include ABS and AIHW mental health datasets.
+      Created for FIT2179 Data Visualisation 2, 2026.
+    </p>
+  </footer>
+
+  <script>
+    vegaEmbed("#waffle", "waffle_chart_mental_health_percentage.vg.json", { actions: false });
+    vegaEmbed("#gender", "diverging_chart_by_gender.vg.json", { actions: false })
+    vegaEmbed("#donut", "donut_chart_types_mental_illnesses.vg.json", { actions: false });
+
+    vegaEmbed("#age-ranking", "bar_chart_age_group_ranking.vg.json", { actions: false });
+    vegaEmbed("#dumbbell", "dumbell_chart_2007_2022_comparison.vg.json", { actions: false });
+    vegaEmbed("#mental-score", "line_chart_mental_health_score.vg.json", { actions: false });
+    vegaEmbed("#contacts-area", "area_chart_number_of_contacts_per_year.vg.json", { actions: false });
+
+    vegaEmbed("#scatter", "scatter_plot_practitioners_contacts_ratio.vg.json", { actions: false });
+    vegaEmbed("#slope", "slope_chart_workforce.vg.json", { actions: false });
+    vegaEmbed("#map", "choropleth_practitioners_per_state.vg.json", { actions: false });
+  </script>
+</body>
+</html>

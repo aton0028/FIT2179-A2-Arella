@@ -1,0 +1,89 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "12-Month Mental Disorder Prevalence by State",
+    "subtitle": "Each square = 1% of the population"
+  },
+
+  "data": {
+    "url": "https://raw.githubusercontent.com/aton0028/datavis2-datasets/refs/heads/main/waffle_by_state_12_month.csv"
+  },
+
+  "transform": [
+    {
+      "window": [
+        {"op": "row_number", "as": "waffle_order"}
+      ],
+      "sort": [
+        {"field": "is_affected", "order": "descending"},
+        {"field": "square_id", "order": "ascending"}
+      ],
+      "groupby": ["state_abbr"]
+    },
+    {
+      "calculate": "datum.waffle_order - 1",
+      "as": "waffle_index"
+    },
+    {
+      "calculate": "datum.waffle_index % 10",
+      "as": "col"
+    },
+    {
+      "calculate": "floor(datum.waffle_index / 10)",
+      "as": "row"
+    }
+  ],
+
+  "facet": {
+  "field": "state_abbr",
+  "type": "nominal",
+  "title": null
+},
+"columns": 4,
+"spec": {
+  "width": 110,
+  "height": 120,
+
+    "mark": {
+      "type": "rect",
+      "stroke": "white",
+      "strokeWidth": 1
+    },
+
+    "encoding": {
+      "x": {
+        "field": "col",
+        "type": "ordinal",
+        "axis": null
+      },
+      "y": {
+        "field": "row",
+        "type": "ordinal",
+        "axis": null,
+        "sort": "descending"
+      },
+      "color": {
+        "field": "status",
+        "type": "nominal",
+        "scale": {
+          "domain": ["12-month mental disorder", "No mental disorder"],
+          "range": ["#E45756", "#EAEAEA"]
+        },
+        "legend": {
+          "title": null,
+          "orient": "bottom"
+        }
+      },
+      "tooltip": [
+        {"field": "state", "title": "State"},
+        {"field": "percentage", "title": "Percentage"},
+        {"field": "status", "title": "Status"}
+      ]
+    }
+  },
+
+  "config": {
+    "view": {"stroke": null},
+    "facet": {"spacing": 15}
+  }
+}

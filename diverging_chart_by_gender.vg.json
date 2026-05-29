@@ -1,0 +1,68 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Mental Disorder Prevalence by Gender",
+    "subtitle": "Percentage of population affected, by disorder and gender",
+    "fontSize": 16,
+    "subtitleFontSize": 12
+  },
+  "width": 250,
+  "height": 300,
+
+  "data": {
+    "url": "https://raw.githubusercontent.com/aton0028/datavis2-datasets/refs/heads/main/specific_disorders_clean.csv",
+    "format": {"type": "csv"}
+  },
+
+  "transform": [
+    {
+      "fold": ["male_pct", "female_pct"],
+      "as": ["gender", "pct"]
+    },
+    {
+      "calculate": "datum.gender === 'male_pct' ? -datum.pct : datum.pct",
+      "as": "diverging_pct"
+    }
+  ],
+
+  "mark": {"type": "bar"},
+
+  "encoding": {
+    "y": {
+      "field": "disorder",
+      "type": "nominal",
+      "sort": {"field": "persons_pct", "order": "descending"},
+      "axis": {"title": null, "labelFontSize": 12}
+    },
+    "x": {
+      "field": "diverging_pct",
+      "type": "quantitative",
+      "title": "← Male   |   Female →",
+      "axis": {
+        "labelExpr": "abs(datum.value) + '%'",
+        "grid": true
+      }
+    },
+    "color": {
+      "field": "gender",
+      "type": "nominal",
+      "scale": {
+        "domain": ["male_pct", "female_pct"],
+        "range": ["#4C78A8", "#E45756"]
+      },
+      "legend": {
+        "title": null,
+        "labelExpr": "datum.value === 'male_pct' ? 'Male' : 'Female'"
+      }
+    },
+    "tooltip": [
+      {"field": "disorder", "title": "Disorder"},
+      {"field": "male_pct", "title": "Male (%)"},
+      {"field": "female_pct", "title": "Female (%)"}
+    ]
+  },
+
+  "config": {
+    "view": {"stroke": null}
+  }
+}

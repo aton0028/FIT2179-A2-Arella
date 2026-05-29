@@ -1,0 +1,61 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Mental Disorders by Category and Type",
+    "subtitle": "Breakdown of specific disorders within each category by prevalence (%)",
+    "fontSize": 16,
+    "subtitleFontSize": 12
+  },
+
+  "data": {
+    "url": "https://raw.githubusercontent.com/aton0028/datavis2-datasets/refs/heads/main/specific_disorders_clean.csv",
+    "format": {"type": "csv"}
+  },
+
+  "facet": {
+    "field": "category",
+    "type": "nominal",
+    "title": null,
+    "header": {
+      "labelFontSize": 14,
+      "labelFontWeight": "bold"
+    }
+  },
+  "columns": 3,
+
+  "spec": {
+    "width": 200,
+    "height": 200,
+    "mark": {
+      "type": "arc",
+      "innerRadius": 50,
+      "outerRadius": 100,
+      "stroke": "white",
+      "strokeWidth": 2
+    },
+    "encoding": {
+      "theta": {
+        "field": "persons_pct",
+        "type": "quantitative"
+      },
+      "color": {
+        "field": "disorder",
+        "type": "nominal",
+        "legend": {
+          "title": "Disorder",
+          "labelFontSize": 11
+        }
+      },
+      "tooltip": [
+        {"field": "disorder", "title": "Disorder"},
+        {"field": "category", "title": "Category"},
+        {"field": "persons_pct", "title": "Prevalence (%)"},
+        {"field": "persons_est_000", "title": "Estimated (000s)"}
+      ]
+    }
+  },
+
+  "config": {
+    "view": {"stroke": null}
+  }
+}

@@ -1,0 +1,128 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": "Mental Health Workforce vs Service Contacts by State",
+  "width": 700,
+  "height": 400,
+
+  "data": {
+    "url": "https://raw.githubusercontent.com/aton0028/datavis2-datasets/refs/heads/main/practitioners-contacts-ratio.csv",
+    "format": {
+      "type": "dsv",
+      "delimiter": ";"
+    }
+  },
+
+  "params": [
+    {
+      "name": "yearSelect",
+      "value": 2022,
+      "bind": {
+        "input": "range",
+        "min": 2015,
+        "max": 2022,
+        "step": 1,
+        "name": "Select Year: "
+      }
+    }
+  ],
+
+  "transform": [
+    {
+      "calculate": "toNumber(datum.Year)",
+      "as": "YearNum"
+    },
+    {
+      "calculate": "toNumber(datum.Practitioners)",
+      "as": "PractitionersNum"
+    },
+    {
+      "calculate": "toNumber(datum.Contacts)",
+      "as": "ContactsNum"
+    },
+    {
+      "calculate": "toNumber(datum.ContactsPerWorker)",
+      "as": "ContactsPerWorkerNum"
+    },
+    {
+      "filter": "datum.YearNum == yearSelect"
+    }
+  ],
+
+  "mark": {
+    "type": "point",
+    "filled": true,
+    "stroke": "black",
+    "strokeWidth": 0.5,
+    "opacity": 0.9
+  },
+
+  "encoding": {
+    "x": {
+      "field": "PractitionersNum",
+      "type": "quantitative",
+      "title": "Total Practitioners"
+    },
+    "y": {
+      "field": "ContactsNum",
+      "type": "quantitative",
+      "title": "Total Service Contacts"
+    },
+    "color": {
+      "field": "State",
+      "type": "nominal",
+      "title": "State",
+      "scale": {
+        "range": [
+          "#0072B2",
+          "#E69F00",
+          "#009E73",
+          "#CC79A7",
+          "#56B4E9",
+          "#D55E00",
+          "#F0E442",
+          "#999999"
+        ]
+      }
+    },
+    "size": {
+      "field": "ContactsPerWorkerNum",
+      "type": "quantitative",
+      "title": "Contacts per Worker",
+      "scale": {
+        "range": [80, 350]
+      }
+    },
+    "tooltip": [
+      {
+        "field": "State",
+        "title": "State"
+      },
+      {
+        "field": "YearNum",
+        "title": "Year",
+        "format": ".0f"
+      },
+      {
+        "field": "PractitionersNum",
+        "title": "Practitioners",
+        "format": ","
+      },
+      {
+        "field": "ContactsNum",
+        "title": "Contacts",
+        "format": ","
+      },
+      {
+        "field": "ContactsPerWorkerNum",
+        "title": "Contacts per Worker",
+        "format": ".2f"
+      }
+    ]
+  },
+
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

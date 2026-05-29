@@ -1,0 +1,95 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "title": {
+    "text": "Mental Health Workforce Growth in Australia",
+    "subtitle": "Select a profession to highlight it while keeping others visible"
+  },
+  "width": 700,
+  "height": 360,
+
+  "data": {
+    "url": "https://raw.githubusercontent.com/aton0028/datavis2-datasets/refs/heads/main/mental_health_workforce_slope_2015_2024.csv"
+  },
+
+  "params": [
+    {
+      "name": "ProfessionSelect",
+      "value": "Psychologists",
+      "bind": {
+        "input": "select",
+        "options": [
+          "Psychiatrists",
+          "Mental health nurses",
+          "Psychologists",
+          "Mental health occupational therapists",
+          "Mental health social workers"
+        ],
+        "name": "Highlight profession: "
+      }
+    }
+  ],
+
+  "mark": {
+    "type": "line",
+    "point": {
+      "filled": true,
+      "size": 100
+    }
+  },
+
+  "encoding": {
+    "x": {
+      "field": "year",
+      "type": "ordinal",
+      "axis": {
+        "title": null,
+        "labelAngle": 0
+      }
+    },
+    "y": {
+      "field": "practitioners",
+      "type": "quantitative",
+      "axis": {
+        "title": "Number of practitioners"
+      }
+    },
+    "color": {
+      "field": "profession",
+      "type": "nominal",
+      "scale": {
+        "range": ["#0072B2", "#E69F00", "#009E73", "#CC79A7", "#56B4E9"]
+      },
+      "legend": {
+        "title": "Profession"
+      }
+    },
+    "opacity": {
+      "condition": {
+        "test": "datum.profession == ProfessionSelect",
+        "value": 1
+      },
+      "value": 0.18
+    },
+    "strokeWidth": {
+      "condition": {
+        "test": "datum.profession == ProfessionSelect",
+        "value": 4
+      },
+      "value": 1.5
+    },
+    "detail": {
+      "field": "profession"
+    },
+    "tooltip": [
+      {"field": "profession", "title": "Profession"},
+      {"field": "year", "title": "Year"},
+      {"field": "practitioners", "title": "Practitioners", "format": ","}
+    ]
+  },
+
+  "config": {
+    "view": {
+      "stroke": null
+    }
+  }
+}

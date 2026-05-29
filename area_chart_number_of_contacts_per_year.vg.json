@@ -1,0 +1,105 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 850,
+  "height": 400,
+  "title": "Community Mental Health Service Contacts by Age Group (2015–2024)",
+
+  "data": {
+    "url": "https://raw.githubusercontent.com/aton0028/datavis2-datasets/refs/heads/main/stacked-area-chart-contacted-patients.csv",
+    "format": { "type": "dsv", "delimiter": ";" }
+  },
+
+  "params": [
+  {
+    "name": "AgeSelect",
+    "value": "All age groups",
+    "bind": {
+      "input": "select",
+      "options": [
+        "All age groups",
+        "0–4 years",
+        "5–11 years",
+        "12–17 years",
+        "18–24 years",
+        "25–34 years",
+        "35–44 years",
+        "45–54 years",
+        "55–64 years",
+        "65–74 years",
+        "75–84 years",
+        "85+ years"
+      ],
+      "name": "Highlight age group: "
+    }
+  }
+],
+
+  "transform": [
+    {
+      "fold": [
+        "2015", "2016", "2017", "2018", "2019",
+        "2020", "2021", "2022", "2023", "2024"
+      ],
+      "as": ["Year", "Contacts"]
+    },
+    {
+      "calculate": "toNumber(replace(datum.Contacts, /,/g, ''))",
+      "as": "ContactsNum"
+    },
+    {
+      "filter": "isValid(datum.ContactsNum)"
+    }
+  ],
+
+  "mark": {
+    "type": "area"
+  },
+
+  "encoding": {
+    "x": {
+      "field": "Year",
+      "type": "ordinal",
+      "title": "Year",
+      "axis": {
+        "labelAngle": 0
+      }
+    },
+    "y": {
+      "field": "ContactsNum",
+      "type": "quantitative",
+      "title": "Number of Contacts"
+    },
+    "color": {
+      "field": "AgeGroup",
+      "type": "nominal",
+      "title": "Age Group",
+      "scale": {
+        "range": [
+          "#0072B2",
+          "#E69F00",
+          "#009E73",
+          "#CC79A7",
+          "#56B4E9",
+          "#D55E00",
+          "#F0E442",
+          "#999999",
+          "#000000",
+          "#A6761D",
+          "#666666"
+        ]
+      }
+    },
+    "opacity": {
+  "condition": {
+    "test": "AgeSelect == 'All age groups' || datum.AgeGroup == AgeSelect",
+    "value": 0.85
+  },
+  "value": 0.12
+},
+    "tooltip": [
+      { "field": "Year", "title": "Year" },
+      { "field": "AgeGroup", "title": "Age Group" },
+      { "field": "ContactsNum", "title": "Contacts", "format": "," }
+    ]
+  }
+}

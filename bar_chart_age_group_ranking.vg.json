@@ -1,0 +1,81 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 400,
+  "height": 500,
+  "title": "Which Age Group Experienced the Most Mental Disorders? (as of 2022)",
+  "data": {
+    "url": "https://raw.githubusercontent.com/aton0028/datavis2-datasets/refs/heads/main/most-affected-age-group.csv",
+    "format": { "type": "dsv", "delimiter": ";" }
+  },
+  "transform": [
+    {
+      "calculate": "toNumber(replace(datum.Total, '%', ''))",
+      "as": "TotalNum"
+    },
+    {
+      "calculate": "datum.TotalNum + '%'",
+      "as": "TotalLabel"
+    }
+  ],
+  "layer": [
+    {
+      "mark": "bar",
+      "encoding": {
+        
+        "x": {
+          "field": "Age Groups",
+          "type": "ordinal",
+          "title": "Age Groups",
+          "axis": { "labelAngle": 0 }
+        },
+        "y": {
+          "field": "TotalNum",
+          "type": "quantitative",
+          "title": "Proportion (%)"
+        },
+        "color": {
+          "field": "Age Groups",
+          "type": "nominal",
+          "scale": {
+            "range": [
+              "#0072B2",
+              "#E69F00",
+              "#009E73",
+              "#CC79A7",
+              "#56B4E9",
+              "#D55E00",
+              "#F0E442",
+              "#999999"
+            ]
+          },
+          "legend": null
+        },
+        "tooltip": [
+          { "field": "Age Groups", "title": "Age Group" },
+          { "field": "TotalNum", "title": "Proportion", "format": ".1f" }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "dy": -8,
+        "fontSize": 12,
+        "fontWeight": "bold"
+      },
+      "encoding": {
+        "x": {
+          "field": "Age Groups",
+          "type": "ordinal"
+        },
+        "y": {
+          "field": "TotalNum",
+          "type": "quantitative"
+        },
+        "text": {
+          "field": "TotalLabel"
+        }
+      }
+    }
+  ]
+}

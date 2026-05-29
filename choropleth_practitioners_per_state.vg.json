@@ -1,0 +1,37 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 600,
+  "height": 400,
+  "title": "Mental Health Practitioners per 100,000 Population by State (2022)",
+  "projection": { "type": "mercator" },
+  "data": {
+    "url": "https://raw.githubusercontent.com/rowanhogan/australian-states/master/states.geojson",
+    "format": { "type": "json", "property": "features" }
+  },
+  "transform": [
+    {
+      "lookup": "properties.STATE_NAME",
+      "from": {
+        "data": {
+          "url": "https://raw.githubusercontent.com/aton0028/datavis2-datasets/refs/heads/main/practitioners-per-state.csv",
+          "format": { "type": "dsv", "delimiter": ";" }
+        },
+        "key": "State and Territory",
+        "fields": ["Number of Practitioners per 100,000 population"]
+      }
+    }
+  ],
+  "mark": { "type": "geoshape", "stroke": "white" },
+  "encoding": {
+    "color": {
+      "field": "Number of Practitioners per 100,000 population",
+      "type": "quantitative",
+      "title": "Per 100,000 population",
+      "scale": { "scheme": "blues" }
+    },
+    "tooltip": [
+      { "field": "properties.STATE_NAME", "title": "State" },
+      { "field": "Number of Practitioners per 100,000 population", "title": "Per 100,000" }
+    ]
+  }
+}

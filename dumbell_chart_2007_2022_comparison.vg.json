@@ -1,0 +1,109 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 400,
+  "height": 450,
+  "title": "Prevalence of Mental Health Disorders by Age Group (2007 vs 2022)",
+  "data": {
+    "url": "https://raw.githubusercontent.com/aton0028/datavis2-datasets/refs/heads/main/2007_2022-comparison.csv",
+    "format": { "type": "dsv", "delimiter": ";" }
+  },
+  "encoding": {
+    "x": {
+      "field": "Age Groups",
+      "type": "ordinal",
+      "title": "Age Group",
+      "axis": {
+        "labelAngle": 0
+      }
+    }
+  },
+  "layer": [
+    {
+      "mark": "rule",
+      "encoding": {
+        "y": {
+          "field": "Percentage of Population with Mental Health Disorder %",
+          "type": "quantitative",
+          "aggregate": "min",
+          "title": "Percentage (%)"
+        },
+        "y2": {
+          "field": "Percentage of Population with Mental Health Disorder %",
+          "aggregate": "max"
+        },
+        "tooltip": [
+          { "field": "Age Groups", "title": "Age Group" },
+          {
+            "field": "Percentage of Population with Mental Health Disorder %",
+            "aggregate": "min",
+            "title": "Lower value (%)",
+            "format": ".1f"
+          },
+          {
+            "field": "Percentage of Population with Mental Health Disorder %",
+            "aggregate": "max",
+            "title": "Higher value (%)",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "point",
+        "filled": true,
+        "size": 120
+      },
+      "encoding": {
+        "y": {
+          "field": "Percentage of Population with Mental Health Disorder %",
+          "type": "quantitative",
+          "title": "Percentage (%)"
+        },
+        "color": {
+          "field": "Year",
+          "type": "nominal",
+          "title": "Year"
+        },
+        "tooltip": [
+          { "field": "Age Groups", "title": "Age Group" },
+          { "field": "Year", "title": "Year" },
+          {
+            "field": "Percentage of Population with Mental Health Disorder %",
+            "title": "Percentage",
+            "format": ".1f"
+          }
+        ]
+      }
+    },
+    {
+      "mark": {
+        "type": "rule",
+        "color": "#333",
+        "strokeWidth": 1
+      },
+      "data": {"values": [{}]},
+      "encoding": {
+        "x": { "datum": "16–24" },
+        "y": { "datum": 10 },
+        "x2": { "datum": "25–34" },
+        "y2": { "datum": 5 }
+      }
+    },
+    {
+      "mark": {
+        "type": "text",
+        "align": "left",
+        "fontSize": 11,
+        "color": "#333",
+        "lineBreak": "\n"
+      },
+      "data": {"values": [{}]},
+      "encoding": {
+        "x": { "datum": "25–34" },
+        "y": { "datum": 4.7 },
+        "text": { "value": ["Largest increase", "between 2007–2022"] }
+      }
+    }
+  ]
+}
